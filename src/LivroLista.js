@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ControleLivros from './controle/ControleLivros';
 import ControleEditora from './controle/ControleEditora';
 
-// Componente auxiliar LinhaLivro
 const LinhaLivro = ({ livro, onExcluir, controleEditora }) => {
   const [nomeEditora, setNomeEditora] = useState('');
 
   useEffect(() => {
-    // Obtendo o nome da editora com base no código
+    // Obtendo o nome da editora
     const nome = controleEditora.getNomeEditora(livro.codEditora);
     setNomeEditora(nome || 'Editora não encontrada');
   }, [livro.codEditora, controleEditora]);
@@ -48,10 +47,10 @@ const LivroLista = () => {
     obterLivros();
   }, [controleLivro]);
 
-  // Método para excluir um livro
+  // Função excluir o livro
   const excluirLivro = (codigoLivro) => {
     controleLivro.excluir(codigoLivro);
-    setLivros([...controleLivro.obterLivros()]); // Atualiza a lista após excluir
+    setLivros([...controleLivro.obterLivros()]);
   };
 
   return (
